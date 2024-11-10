@@ -36,6 +36,7 @@ const Install = () => {
           <li>諏訪市役所</li>
           <li>上田市役所</li>
           <li>松本市観光情報センター</li>
+          <li>TonaRide</li>
         </ul>
       </div>
 

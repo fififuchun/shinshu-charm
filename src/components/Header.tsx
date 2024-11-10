@@ -11,7 +11,7 @@ import imgArticle from "@/assets/webp/header_article.webp";
 
 import useIsMobile from "./IsMobile";
 
-export default function TopHeader() {
+const Header = () => {
   // モバイルかどうか
   const isMobile = useIsMobile();
 
@@ -278,4 +278,6 @@ export default function TopHeader() {
       )}
     </header>
   );
-}
+};
+
+export { Header };

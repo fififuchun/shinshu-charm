@@ -19,6 +19,7 @@ const Article = () => {
             whileHover={{ scale: 0.8, opacity: 0.7 }}
             whileTap={{ scale: 0.8, opacity: 0.7 }}
             transition={{ duration: 0.2 }}
+            className="pointer-events-none"
           >
             <Link to={`/article/${ARTICLE_DATA.length - index - 1}`}>
               <div

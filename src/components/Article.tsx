@@ -45,7 +45,7 @@ const Article = () => {
 
       {art.main.map((main) => (
         <>
-          <div className="text-green-600 font-bold text-3xl border-b px-5 mx-3 mt-16">
+          <div className="text-green-600 font-bold text-3xl border-b px-3 sm:px-5 sm:mx-3 mt-16">
             {main.head}
           </div>
 
@@ -54,11 +54,11 @@ const Article = () => {
               {body.caption === "" ? (
                 <div></div>
               ) : (
-                <div className="bg-green-600 w-fit rounded-full text-white text-lg font-bold ml-10 mt-4 px-6 py-0.5">
+                <div className="bg-green-600 w-fit rounded-full text-white text-lg font-bold ml-3 sm:ml-10 mt-4 px-6 py-0.5">
                   {body.caption}
                 </div>
               )}
-              <div className="m-5 px-6">
+              <div className="my-5 sm:m-5 px-6">
                 {body.text.split("\n").map((line, index) => (
                   <p key={index}>{line}</p>
                 ))}

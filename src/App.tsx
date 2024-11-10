@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Top from "./components/Top.tsx";
-import Header from "./components/Header.tsx";
+import { Header } from "./components/Header.tsx";
 import Footer from "./components/Footer";
 import About from "./components/About.tsx";
 import Backnumber from "./components/Backnumber.tsx";
