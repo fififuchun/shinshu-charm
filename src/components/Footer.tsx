@@ -2,10 +2,10 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-import logo from "@/assets/webp/logo_shinshucharm.webp";
-import logo_x from "@/assets/webp/logo_black.webp";
-import logo_insta from "@/assets/webp/logo_Instagram.webp";
-import logo_gmail from "@/assets/webp/logo_gmail.webp";
+import logo from "@/assets/webp/logo/logo_shinshucharm.webp";
+import logo_x from "@/assets/webp/logo/logo_black.webp";
+import logo_insta from "@/assets/webp/logo/logo_Instagram.webp";
+import logo_gmail from "@/assets/webp/logo/logo_gmail.webp";
 
 const Footer = () => {
   return (
@@ -16,19 +16,19 @@ const Footer = () => {
         <div className="flex list-none space-x-8 font-bold text-sm py-5">
           <Link
             to="/"
-            className="active:text-green-100 lg:hover:text-green-100 duration-200"
+            className="active:text-white md:hover:text-white duration-200"
           >
             サイトトップ
           </Link>
           <Link
             to="/contact"
-            className="active:text-green-100 lg:hover:text-green-100 duration-200"
+            className="active:text-white md:hover:text-white duration-200"
           >
             お問い合わせ
           </Link>
           <Link
             to="/about"
-            className="active:text-green-100 lg:hover:text-green-100 duration-200"
+            className="active:text-white md:hover:text-white duration-200"
           >
             私たちについて
           </Link>

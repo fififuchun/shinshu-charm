@@ -3,9 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-import logo from "@/assets/webp/logo_shinshucharm.webp";
-import imgTop from "@/assets/webp/header_shinshucharm.webp";
+import logo from "@/assets/webp/logo/logo_shinshucharm.webp";
+import imgAbout from "@/assets/webp/header_about_shinshucharm.webp";
 import imgContact from "@/assets/webp/flower_shinshucharm.webp";
+import imgInstall from "@/assets/webp/header_install_shinshucharm.webp";
+import imgArticle from "@/assets/webp/header_article.webp";
 
 import useIsMobile from "./IsMobile";
 
@@ -38,33 +40,55 @@ export default function TopHeader() {
   // 今どこのディレクトリにいるか
   const location = useLocation();
 
+  //ヘッダー画像群
+  const headImgs = [imgContact, imgInstall, imgArticle];
+
   // パスに応じたロゴ画像を選択
   let headImg;
   let explainText: string[] = ["", ""];
 
-  switch (location.pathname) {
-    case "/":
-      headImg = imgTop;
+  switch (true) {
+    case location.pathname === "/":
+      headImg = headImgs[getRandomInt(0, headImgs.length - 1)];
       break;
-    case "/about":
-      headImg = imgContact;
+    case location.pathname === "/about":
+      headImg = imgAbout;
       explainText = ["ABOUT", "私たちについて"];
       break;
-    case "/contact":
+    case location.pathname === "/contact":
       headImg = imgContact;
       explainText = ["CONTACT", "お問い合わせ"];
       break;
-    case "/install":
-      headImg = imgContact;
-      explainText = ["INSTALL", "配布場所"];
+    case location.pathname === "/install":
+      headImg = imgInstall;
+      explainText = ["INSTALL", "設置場所"];
       break;
-    case "/article":
-      headImg = imgContact;
+    case location.pathname === "/article":
+      headImg = imgArticle;
       explainText = ["ARTICLE", "記事"];
       break;
-    default:
-      headImg = imgTop;
+    case /^\/article\/\d+$/.test(location.pathname): // /article/の後に数字が続くパス
+      headImg = imgArticle;
+      explainText = ["ARTICLE", "記事"];
       break;
+    case location.pathname === "/backnumber":
+      headImg = imgArticle;
+      explainText = ["BACKNUMBER", "刊行済み冊子"];
+      break;
+    default:
+      headImg = imgContact;
+      explainText = ["OTHER", "その他"];
+      break;
+  }
+
+  const styleMap: { [key: string]: { objectPosition: string } } = {
+    "/about": { objectPosition: "50% 3%" },
+  };
+
+  function getRandomInt(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   return (
@@ -77,12 +101,15 @@ export default function TopHeader() {
           className={`w-lvw object-cover ${
             location.pathname === "/" ? "h-lvh bg-green-300" : "h-[50vh]"
           }`}
-          style={
-            location.pathname === "/" ? { objectPosition: "20% 100%" } : {}
-          }
+          style={styleMap[location.pathname] || {}}
         />
 
-        {location.pathname !== "/" && (
+        {location.pathname === "/" ? (
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-white font-bold text-center text-xl">
+            <p>SCROLL</p>
+            <p className="text-2xl">↓</p>
+          </div>
+        ) : (
           <div className="absolute inset-0 bg-white top-1/2 left-1/2 transform -translate-x-1/2 w-80 h-28 opacity-70 flex flex-col items-center justify-center text-black rounded-xl">
             <p className="text-4xl font-bold">{explainText[0]}</p>
             <p className="text-">{explainText[1]}</p>
@@ -93,9 +120,9 @@ export default function TopHeader() {
       {isMobile ? (
         <>
           <div
-            className={`h-16 w-11/12 mt-6 rounded-full bg-white flex justify-center items-center z-10 ${
+            className={`h-14 sm:h-16 w-11/12 mt-6 rounded-full bg-white flex justify-center items-center z-10 ${
               open ? "fixed top-0" : "absolute"
-            }`}
+            } ${location.pathname === "/about" ? "opacity-80" : ""}`}
           >
             <Link
               to="/"
@@ -172,16 +199,8 @@ export default function TopHeader() {
               </p>
 
               <Link
-                to="/"
-                className="w-2/3 h-[11vh] flex justify-center font-bold text-2xl border-y border-green-300 hover:opacity-50 transition-opacity"
-                onClick={clickMenu}
-              >
-                <p className="content-center">トップ</p>
-              </Link>
-
-              <Link
                 to="/about"
-                className="w-2/3 h-[11vh] flex justify-center font-bold text-2xl border-b border-green-300 hover:opacity-50 transition-opacity"
+                className="w-2/3 h-[11vh] flex justify-center font-bold text-2xl border-y border-green-300 active:opacity-50 transition-opacity"
                 onClick={clickMenu}
               >
                 <p className="content-center">私たちについて</p>
@@ -189,7 +208,7 @@ export default function TopHeader() {
 
               <Link
                 to="/contact"
-                className="w-2/3 h-[11vh] flex justify-center font-bold text-2xl border-b border-green-300 hover:opacity-50 transition-opacity"
+                className="w-2/3 h-[11vh] flex justify-center font-bold text-2xl border-b border-green-300 active:opacity-50 transition-opacity"
                 onClick={clickMenu}
               >
                 <p className="content-center">お問い合わせ</p>
@@ -197,27 +216,39 @@ export default function TopHeader() {
 
               <Link
                 to="/install"
-                className="w-2/3 h-[11vh] flex justify-center font-bold text-2xl border-b border-green-300 hover:opacity-50 transition-opacity"
+                className="w-2/3 h-[11vh] flex justify-center font-bold text-2xl border-b border-green-300 active:opacity-50 transition-opacity"
                 onClick={clickMenu}
               >
-                <p className="content-center">配布場所</p>
+                <p className="content-center">設置場所</p>
               </Link>
 
               <Link
                 to="/article"
-                className="w-2/3 h-[11vh] flex justify-center font-bold text-2xl border-b border-green-300 hover:opacity-50 transition-opacity mb-[1vh]"
+                className="w-2/3 h-[11vh] flex justify-center font-bold text-2xl border-b border-green-300 active:opacity-50 transition-opacity"
                 onClick={clickMenu}
               >
                 <p className="content-center">記事</p>
+              </Link>
+
+              <Link
+                to="/backnumber"
+                className="w-2/3 h-[11vh] flex justify-center font-bold text-2xl border-b border-green-300 active:opacity-50 transition-opacity mb-[1vh]"
+                onClick={clickMenu}
+              >
+                <p className="content-center">バックナンバー</p>
               </Link>
             </motion.nav>
           </div>
         </>
       ) : (
-        <div className="h-16 w-11/12 mt-6 rounded-full bg-white absolute flex items-center pl-10">
+        <div
+          className={`h-16 w-11/12 mt-6 rounded-full bg-white absolute flex items-center pl-10 ${
+            location.pathname === "/about" ? "opacity-80" : ""
+          }`}
+        >
           <Link
             to="/"
-            className="w-1/3 h-full flex items-center justify-center transition hover:opacity-40"
+            className="w-fit h-full flex items-center justify-center transition hover:opacity-40"
           >
             <img
               src={logo}
@@ -226,30 +257,21 @@ export default function TopHeader() {
             />
           </Link>
 
-          <ul className="flex justify-around font-bold ml-auto mr-10 lg:space-x-8 md:space-x-6">
-            <Link
-              to="/about"
-              className="transition lg:hover:opacity-40 active:opacity-40"
-            >
+          <ul className="flex justify-around font-bold ml-auto mr-6 lg:space-x-8 md:space-x-2.5 text-sm lg:text-base">
+            <Link to="/about" className="transition hover:text-green-500">
               私たちについて
             </Link>
-            <Link
-              to="/contact"
-              className="transition lg:hover:opacity-40 active:opacity-40"
-            >
+            <Link to="/contact" className="transition hover:text-green-500">
               お問い合わせ
             </Link>
-            <Link
-              to="/install"
-              className="transition lg:hover:opacity-40 active:opacity-40"
-            >
-              配布場所
+            <Link to="/install" className="transition hover:text-green-500">
+              設置場所
             </Link>
-            <Link
-              to="/article"
-              className="transition lg:hover:opacity-40 active:opacity-40"
-            >
+            <Link to="/article" className="transition hover:text-green-500">
               記事
+            </Link>
+            <Link to="/backnumber" className="transition hover:text-green-500">
+              バックナンバー
             </Link>
           </ul>
         </div>
