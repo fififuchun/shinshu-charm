@@ -75,7 +75,7 @@ const Footer = () => {
       </div>
 
       <div className="bg-green-600 w-full h-10 text-white flex items-center justify-center font-bold text-sm">
-        &copy;&ensp;2022-2024&ensp;信州チャーム, shinshucharm
+        &copy;&ensp;2022-2025&ensp;信州チャーム, shinshucharm
       </div>
     </>
   );

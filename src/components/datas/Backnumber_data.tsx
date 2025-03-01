@@ -4,7 +4,7 @@ const BACKNUMBER_DATA = [
   // 新しい冊子を刊行するたびに項目を追加
   {
     index: [5, 0],
-    date: "2024.4発行予定",
+    date: "2025.4発行予定",
     description: "現在製作中です！",
   },
   {

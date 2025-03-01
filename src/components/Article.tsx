@@ -49,7 +49,7 @@ const Article = () => {
             {main.head}
           </div>
 
-          {main.body.map((body) => (
+          {/* {main.body.map((body) => (
             <>
               {body.caption === "" ? (
                 <div></div>
@@ -64,7 +64,47 @@ const Article = () => {
                 ))}
               </div>
             </>
-          ))}
+          ))} */}
+
+          {main.body.map((body, index) => {
+            let captionElement;
+
+            if (body.caption === "@empty" || body.caption === "") {
+              captionElement = <div></div>;
+            } else if (body.caption === "@link") {
+              captionElement = (
+                <a
+                  href={`${body.link}`}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="hover:opacity-70 transition"
+                >
+                  <button className="bg-blue-600 w-fit rounded-full text-white text-lg font-bold ml-3 sm:ml-10 mt-4 px-6 py-0.5">
+                    {`${body.link_caption} →`}
+                  </button>
+                </a>
+
+                // </div>
+              );
+            } else {
+              captionElement = (
+                <div className="bg-green-600 w-fit rounded-full text-white text-lg font-bold ml-3 sm:ml-10 mt-4 px-6 py-0.5">
+                  {body.caption}
+                </div>
+              );
+            }
+
+            return (
+              <div key={index}>
+                {captionElement}
+                <div className="my-5 sm:m-5 px-6">
+                  {body.text.split("\n").map((line, idx) => (
+                    <p key={idx}>{line}</p>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </>
       ))}
 

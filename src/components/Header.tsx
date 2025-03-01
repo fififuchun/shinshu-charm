@@ -1,22 +1,23 @@
-import { useEffect } from "react";
+import { useEffect /*, useState*/ } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useState } from "react";
+// import { IsSide } from "./IsSide";
 
 import logo from "@/assets/webp/logo/logo_shinshucharm.webp";
-import imgAbout from "@/assets/webp/header_about_shinshucharm.webp";
+// import imgAbout from "@/assets/webp/header_about_shinshucharm.webp";
 import imgContact from "@/assets/webp/flower_shinshucharm.webp";
 import imgInstall from "@/assets/webp/header_install_shinshucharm.webp";
 import imgArticle from "@/assets/webp/header_article.webp";
 
 import useIsMobile from "./IsMobile";
+import { useSidebar } from "@/components/SidebarContext";
 
 const Header = () => {
   // モバイルかどうか
   const isMobile = useIsMobile();
 
   // サイドバーが開いているかどうか
-  const [open, setOpen] = useState(false);
+  const { open, setOpen } = useSidebar();
   const clickMenu = () => {
     setOpen(!open);
   };
@@ -52,7 +53,7 @@ const Header = () => {
       headImg = headImgs[getRandomInt(0, headImgs.length - 1)];
       break;
     case location.pathname === "/about":
-      headImg = imgAbout;
+      headImg = imgContact;
       explainText = ["ABOUT", "私たちについて"];
       break;
     case location.pathname === "/contact":
@@ -81,9 +82,9 @@ const Header = () => {
       break;
   }
 
-  const styleMap: { [key: string]: { objectPosition: string } } = {
-    "/about": { objectPosition: "50% 3%" },
-  };
+  // const styleMap: { [key: string]: { objectPosition: string } } = {
+  //   "/about": { objectPosition: "50% 3%" },
+  // };
 
   function getRandomInt(min: number, max: number): number {
     min = Math.ceil(min);
@@ -101,7 +102,7 @@ const Header = () => {
           className={`w-lvw object-cover ${
             location.pathname === "/" ? "h-lvh bg-green-300" : "h-[50vh]"
           }`}
-          style={styleMap[location.pathname] || {}}
+          // style={styleMap[location.pathname] || {}}
         />
 
         {location.pathname === "/" ? (

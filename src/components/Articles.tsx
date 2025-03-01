@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import { ARTICLE_DATA } from "./datas/Article_data";
+import { useSidebar } from "@/components/SidebarContext";
 
 import latest from "@/assets/webp/latestUpdate.webp";
 
 const Article = () => {
+  const { open } = useSidebar();
+
   return (
     <>
       <div className="text-green-600 font-bold text-3xl border-b px-5 mx-3 mt-5">
@@ -19,7 +22,7 @@ const Article = () => {
             whileHover={{ scale: 0.8, opacity: 0.7 }}
             whileTap={{ scale: 0.8, opacity: 0.7 }}
             transition={{ duration: 0.2 }}
-            className="pointer-events-none"
+            className={open ? "pointer-events-none" : ""}
           >
             <Link to={`/article/${ARTICLE_DATA.length - index - 1}`}>
               <div
