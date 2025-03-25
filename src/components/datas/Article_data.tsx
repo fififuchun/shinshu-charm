@@ -38,8 +38,14 @@ const ARTICLE_DATA = [
         head: "配布先",
         body: [
           {
-            caption: "多様な場所においています。",
+            caption: "長野県内各地で配布しています！",
             text: "信州大学　松本大学　佐久大学　諏訪東京理科大学　長野大学　長野県立大学\nテンホウ\n長野県内の市町村の役所",
+          },
+          {
+            caption: "@link",
+            link: "https://shinshucharm.com/install",
+            link_caption: "配布場所",
+            text: "詳しくはこちらからどうぞ！",
           },
         ],
       },
