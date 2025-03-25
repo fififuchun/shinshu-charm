@@ -183,9 +183,9 @@ export default function Top() {
                   style={{ paddingTop: "61.8%" }}
                 >
                   <img
-                    src={`/article_imgs/article_${
+                    src={`/article_imgs/art_${
                       ARTICLE_DATA.length - index - 1
-                    }_shinshucharm.webp`}
+                    }.webp`}
                     alt=""
                     className="absolute top-0 left-0 object-cover w-full h-full"
                   />

@@ -38,7 +38,7 @@ const Article = () => {
       </div>
 
       <img
-        src={`/article_imgs/article_${Number(param.id)}_shinshucharm.webp`}
+        src={`/article_imgs/art_${Number(param.id)}.webp`}
         alt={`${index}番目の記事`}
         className="my-5 sm:px-5 w-full"
       />
