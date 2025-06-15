@@ -243,7 +243,7 @@ const Header = () => {
         </>
       ) : (
         <div
-          className={`h-16 w-11/12 mt-6 rounded-full bg-white absolute flex items-center pl-10 ${
+          className={`h-16 w-11/12 mt-6 rounded-full bg-white absolute flex items-center pl-8 ${
             location.pathname === "/about" ? "opacity-80" : ""
           }`}
         >
@@ -258,7 +258,7 @@ const Header = () => {
             />
           </Link>
 
-          <ul className="flex justify-around font-bold ml-auto mr-6 lg:space-x-8 md:space-x-2.5 text-sm lg:text-base">
+          <ul className="flex justify-center items-center font-bold ml-auto mr-6 lg:space-x-8 md:space-x-2.5 text-sm lg:text-base">
             <Link to="/about" className="transition hover:text-green-500">
               私たちについて
             </Link>

@@ -14,6 +14,21 @@ import { ARTICLE_DATA } from "./datas/Article_data";
 export default function Top() {
   return (
     <>
+      {/* <iframe
+        src="https://www.docswell.com/slide/5YD36E/embed"
+        allowFullScreen={true}
+        className="docswell-iframe"
+        width="620"
+        height="873"
+        style={{
+          border: "1px solid #ccc",
+          display: "block",
+          margin: "0 auto",
+          padding: 0,
+          aspectRatio: "620 / 873",
+        }}
+      ></iframe> */}
+
       <div className="text-green-600 font-bold text-3xl border-b px-5 mx-3 mt-5">
         ABOUT
       </div>

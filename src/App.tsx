@@ -15,6 +15,7 @@ import NotFound from "./components/NotFound.tsx";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { SidebarProvider } from "@/components/SidebarContext";
+import Magazin from "./components/Magazin.tsx";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -39,6 +40,8 @@ function App() {
 
             <Route path="/about" element={<About />} />
             <Route path="/backnumber" element={<Backnumber />} />
+            <Route path="/backnumber/:id" element={<Magazin />} />
+
             <Route path="/contact" element={<Contact />} />
             <Route path="/install" element={<Install />} />
             <Route path="/article" element={<Articles />} />
