@@ -49,43 +49,26 @@ const Article = () => {
             {main.head}
           </div>
 
-          {/* {main.body.map((body) => (
-            <>
-              {body.caption === "" ? (
-                <div></div>
-              ) : (
-                <div className="bg-green-600 w-fit rounded-full text-white text-lg font-bold ml-3 sm:ml-10 mt-4 px-6 py-0.5">
-                  {body.caption}
-                </div>
-              )}
-              <div className="my-5 sm:m-5 px-6">
-                {body.text.split("\n").map((line, index) => (
-                  <p key={index}>{line}</p>
-                ))}
-              </div>
-            </>
-          ))} */}
-
           {main.body.map((body, index) => {
             let captionElement;
 
             if (body.caption === "@empty" || body.caption === "") {
               captionElement = <div></div>;
             } else if (body.caption === "@link") {
-              captionElement = (
-                <a
-                  href={`${body.link}`}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="hover:opacity-70 transition"
-                >
-                  <button className="bg-blue-600 w-fit rounded-full text-white text-lg font-bold ml-3 sm:ml-10 mt-4 px-6 py-0.5">
-                    {`${body.link_caption} →`}
-                  </button>
-                </a>
-
-                // </div>
-              );
+              captionElement = "link" in body &&
+                body.link &&
+                body.link_caption && (
+                  <a
+                    href={body.link}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="hover:opacity-70 transition"
+                  >
+                    <div className="w-fit text-blue-500 border-blue-500 border-b font-bold ml-3 sm:ml-10 mt-4 px-">
+                      {`${body.link_caption} →`}
+                    </div>
+                  </a>
+                );
             } else {
               captionElement = (
                 <div className="bg-green-600 w-fit rounded-full text-white text-lg font-bold ml-3 sm:ml-10 mt-4 px-6 py-0.5">
@@ -97,6 +80,15 @@ const Article = () => {
             return (
               <div key={index}>
                 {captionElement}
+                {/* 画像があるときだけ表示 */}
+                {"img" in body && body.img && (
+                  <img
+                    src={`/article_imgs/art_${body.img}.webp`}
+                    alt={`${body.img}の画像`}
+                    className="my-5 sm:m-5 px-6 w-full"
+                    // onError={(e) => (e.currentTarget.style.display = "none")}
+                  />
+                )}
                 <div className="my-5 sm:m-5 px-6">
                   {body.text.split("\n").map((line, idx) => (
                     <p key={idx}>{line}</p>
