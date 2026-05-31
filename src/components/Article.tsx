@@ -1,106 +1,84 @@
-// import React from "react";
-import { ARTICLE_DATA } from "./datas/Article_data";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { useParams } from "react-router-dom";
 
+import type { Article as ArticleType } from "@fififuchun/article-system";
+import { articles } from "@/lib/articles";
 import latest from "@/assets/webp/latestUpdate.webp";
 
 const Article = () => {
-  const param = useParams();
+  const { id } = useParams();
+  const article = articles.find((a: ArticleType) => a.id === Number(id));
 
-  // 記事のインデックス、-1のときは「」
-  const index: number = param.id
-    ? ARTICLE_DATA.length - Number(param.id) - 1
-    : -1;
+  if (!article) return <div className="mt-5 mx-5">記事が見つかりません</div>;
 
-  const art = ARTICLE_DATA[index];
+  const [year, month, day] = article.date.split("-").map(Number);
+  const [ly, lm, ld] = article.latestUpdate.split("-").map(Number);
 
   return (
     <div className="mt-5 mx-5 max-w-[800px]">
-      {/* 全てにMAX:800pxを効かしたい */}
-      <div className="h-fit flex items-center bg-green-00">
+      <div className="h-fit flex items-center">
         <div className="text-center w-[10vw] min-w-16">
-          <p className="text-sm">{art.date[0]}</p>
-          <p className="text-2xl -mt-1">
-            {art.date[1]}/{art.date[2]}
-          </p>
+          <p className="text-sm">{year}</p>
+          <p className="text-2xl -mt-1">{month}/{day}</p>
         </div>
-
         <p className="pl-3 font-bold text-2xl border-l border-slate-500">
-          {art.title}
+          {article.title}
         </p>
       </div>
 
       <div className="flex items-center m-3">
         <img src={latest} alt="最終更新日時" className="w-4 h-4 mx-1" />
-        <p className="text-sm">
-          {art.latestUpdate[0]}年{art.latestUpdate[1]}月{art.latestUpdate[2]}日
-        </p>
+        <p className="text-sm">{ly}年{lm}月{ld}日</p>
       </div>
 
       <img
-        src={`/article_imgs/art_${Number(param.id)}.webp`}
-        alt={`${index}番目の記事`}
+        src={`/article_imgs/${article.thumbnail}`}
+        alt={article.title}
         className="my-5 sm:px-5 w-full"
       />
 
-      {art.main.map((main) => (
-        <>
-          <div className="text-green-600 font-bold text-3xl border-b px-3 sm:px-5 sm:mx-3 mt-16">
-            {main.head}
-          </div>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          h2: ({ children }) => (
+            <div className="text-green-600 font-bold text-3xl border-b px-3 sm:px-5 sm:mx-3 mt-16">
+              {children}
+            </div>
+          ),
+          h3: ({ children }) => (
+            <div className="bg-green-600 w-fit rounded-full text-white text-lg font-bold ml-3 sm:ml-10 mt-4 px-6 py-0.5">
+              {children}
+            </div>
+          ),
+          p: ({ children }) => (
+            <div className="my-5 sm:m-5 px-6">
+              <p>{children}</p>
+            </div>
+          ),
+          img: ({ src, alt }) => (
+            <img
+              src={`/article_imgs/${src}`}
+              alt={alt ?? ""}
+              className="my-5 sm:m-5 px-6 w-full"
+            />
+          ),
+          a: ({ href, children }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="hover:opacity-70 transition block w-fit text-blue-500 border-blue-500 border-b font-bold"
+            >
+              {children}
+            </a>
+          ),
+        }}
+      >
+        {article.content}
+      </ReactMarkdown>
 
-          {main.body.map((body, index) => {
-            let captionElement;
-
-            if (body.caption === "@empty" || body.caption === "") {
-              captionElement = <div></div>;
-            } else if (body.caption === "@link") {
-              captionElement = "link" in body &&
-                body.link &&
-                body.link_caption && (
-                  <a
-                    href={body.link}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="hover:opacity-70 transition"
-                  >
-                    <div className="w-fit text-blue-500 border-blue-500 border-b font-bold ml-3 sm:ml-10 mt-4 px-">
-                      {`${body.link_caption} →`}
-                    </div>
-                  </a>
-                );
-            } else {
-              captionElement = (
-                <div className="bg-green-600 w-fit rounded-full text-white text-lg font-bold ml-3 sm:ml-10 mt-4 px-6 py-0.5">
-                  {body.caption}
-                </div>
-              );
-            }
-
-            return (
-              <div key={index}>
-                {captionElement}
-                {/* 画像があるときだけ表示 */}
-                {"img" in body && body.img && (
-                  <img
-                    src={`/article_imgs/art_${body.img}.webp`}
-                    alt={`${body.img}の画像`}
-                    className="my-5 sm:m-5 px-6 w-full"
-                    // onError={(e) => (e.currentTarget.style.display = "none")}
-                  />
-                )}
-                <div className="my-5 sm:m-5 px-6">
-                  {body.text.split("\n").map((line, idx) => (
-                    <p key={idx}>{line}</p>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </>
-      ))}
-
-      <p className="text-right font-bold m-10">担当：{art.staff}</p>
+      <p className="text-right font-bold m-10">担当：{article.staff}</p>
     </div>
   );
 };
