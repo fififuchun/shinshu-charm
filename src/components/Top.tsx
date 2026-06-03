@@ -14,21 +14,6 @@ import { articles } from "@/lib/articles";
 export default function Top() {
   return (
     <>
-      {/* <iframe
-        src="https://www.docswell.com/slide/5YD36E/embed"
-        allowFullScreen={true}
-        className="docswell-iframe"
-        width="620"
-        height="873"
-        style={{
-          border: "1px solid #ccc",
-          display: "block",
-          margin: "0 auto",
-          padding: 0,
-          aspectRatio: "620 / 873",
-        }}
-      ></iframe> */}
-
       <div className="text-green-600 font-bold text-3xl border-b px-5 mx-3 mt-5">
         ABOUT
       </div>
@@ -186,7 +171,7 @@ export default function Top() {
             </div>
           </motion.div> */}
 
-          {[...articles].reverse().map((article) => {
+          {[...articles].reverse().slice(0, 6).map((article) => {
             const [y, m, d] = article.latestUpdate.split("-").map(Number);
             return (
               <motion.div
@@ -215,7 +200,9 @@ export default function Top() {
                         alt="最終更新日時"
                         className="w-4 h-4 mx-1"
                       />
-                      <p className="text-sm">{y}年{m}月{d}日</p>
+                      <p className="text-sm">
+                        {y}年{m}月{d}日
+                      </p>
                     </div>
                   </div>
                 </Link>
