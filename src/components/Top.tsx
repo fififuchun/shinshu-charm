@@ -7,8 +7,7 @@ import pic1 from "@/assets/webp/picture_1_shinshucharm.webp";
 import pic2 from "@/assets/webp/picture_2_shinshucharm.webp";
 import intro from "@/assets/webp/about_intro_shinshucharm.webp";
 
-import latest from "@/assets/webp/latestUpdate.webp";
-
+import { ClockIcon } from "@fififuchun/article-system";
 import { articles } from "@/lib/articles";
 
 export default function Top() {
@@ -195,11 +194,7 @@ export default function Top() {
                   <div className="text-left mx-1">
                     <p className="font-bold text-xl my-4">{article.title}</p>
                     <div className="flex items-center">
-                      <img
-                        src={latest}
-                        alt="最終更新日時"
-                        className="w-4 h-4 mx-1"
-                      />
+                      <ClockIcon className="w-4 h-4 mx-1" />
                       <p className="text-sm">
                         {y}年{m}月{d}日
                       </p>

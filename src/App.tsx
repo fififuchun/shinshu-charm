@@ -16,6 +16,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { SidebarProvider } from "@/components/SidebarContext";
 import Magazin from "@/components/Magazin.tsx";
+import Preview from "@/components/Preview.tsx";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -45,6 +46,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/install" element={<Install />} />
             <Route path="/article" element={<Articles />} />
+            <Route path="/article/preview" element={<Preview />} />
             <Route path="/article/:id" element={<Article />} />
 
             <Route path="/*" element={<NotFound />} />

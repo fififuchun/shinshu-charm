@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+import { ClockIcon } from "@fififuchun/article-system";
 import { articles } from "@/lib/articles";
 import { useSidebar } from "@/components/SidebarContext";
-
-import latest from "@/assets/webp/latestUpdate.webp";
 
 const Articles = () => {
   const { open } = useSidebar();
@@ -38,7 +37,7 @@ const Articles = () => {
                 <div className="text-left mx-1">
                   <p className="font-bold text-xl my-4">{article.title}</p>
                   <div className="flex items-center">
-                    <img src={latest} alt="最終更新日時" className="w-4 h-4 mx-1" />
+                    <ClockIcon className="w-4 h-4 mx-1" />
                     <p className="text-sm">{y}年{m}月{d}日</p>
                   </div>
                 </div>
