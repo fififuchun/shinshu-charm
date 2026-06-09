@@ -25,13 +25,13 @@ const Backnumber = () => {
             <Link to={`/backnumber/${BACKNUMBER_DATA.length - index}`}>
               {item.index[0] === 0 ? (
                 <img
-                  src={`/covers/cover_0_${item.index[1]}_shinshucharm.webp`}
+                  src={`/public_imgs/covers/cover_0_${item.index[1]}_shinshucharm.webp`}
                   alt={`特別号表紙`}
                   className="h-96 w-full min-w-60 object-scale-down"
                 />
               ) : (
                 <img
-                  src={`/covers/cover_${item.index[0]}_shinshucharm.webp`}
+                  src={`/public_imgs/covers/cover_${item.index[0]}_shinshucharm.webp`}
                   alt={`${item.index[0]}号目表紙`}
                   className="h-96 w-full min-w-60 object-scale-down"
                 />

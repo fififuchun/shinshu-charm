@@ -92,7 +92,7 @@ const About = () => {
 
       <div className="flex flex-col items-center sm:flex-row sm:items-center">
         <img
-          src="/photos/信州大学_海沼怜_かいぬま.jpeg"
+          src="/public_imgs/photos/信州大学_海沼怜_かいぬま.jpeg"
           alt=""
           className="w-60 h-60 rounded-full m-10 object-cover"
         />
@@ -115,7 +115,7 @@ const About = () => {
         {/* メンバー紹介 */}
         <div className="flex flex-col items-center text-center">
           <img
-            src="/photos/信州大学OB_向山尚樹_向山尚樹.jpeg"
+            src="/public_imgs/photos/信州大学OB_向山尚樹_向山尚樹.jpeg"
             alt=""
             className="w-48 h-48 rounded-full m-10 object-cover"
           />
@@ -128,7 +128,7 @@ const About = () => {
         </div>
         <div className="flex flex-col items-center text-center">
           <img
-            src="/photos/信州大学_廣村壮吾_ひろむら.JPG"
+            src="/public_imgs/photos/信州大学_廣村壮吾_ひろむら.JPG"
             alt=""
             className="w-48 h-48 rounded-full m-10 object-cover"
           />
@@ -143,7 +143,7 @@ const About = () => {
 
         <div className="flex flex-col items-center text-center">
           <img
-            src="/photos/信州大学_大浦快斗_おおうら.jpeg"
+            src="/public_imgs/photos/信州大学_大浦快斗_おおうら.jpeg"
             alt=""
             className="w-48 h-48 rounded-full m-10 object-cover"
           />
@@ -157,7 +157,7 @@ const About = () => {
         </div>
         <div className="flex flex-col items-center text-center">
           <img
-            src="/photos/信州大学_鈴木敏和_とっしー.jpeg"
+            src="/public_imgs/photos/信州大学_鈴木敏和_とっしー.jpeg"
             alt=""
             className="w-48 h-48 rounded-full m-10 object-cover"
           />
@@ -172,7 +172,7 @@ const About = () => {
 
         <div className="flex flex-col items-center text-center">
           <img
-            src="/photos/長野大学_武舎冴門_アイザック.jpg"
+            src="/public_imgs/photos/長野大学_武舎冴門_アイザック.jpg"
             alt=""
             className="w-48 h-48 rounded-full m-10 object-cover"
           />
@@ -187,7 +187,7 @@ const About = () => {
 
         <div className="flex flex-col items-center text-center">
           <img
-            src="/photos/松本大学_鈴木悠太_ゆうた.jpeg"
+            src="/public_imgs/photos/松本大学_鈴木悠太_ゆうた.jpeg"
             alt=""
             className="w-48 h-48 rounded-full m-10 object-cover"
           />
@@ -202,7 +202,7 @@ const About = () => {
 
         <div className="flex flex-col items-center text-center">
           <img
-            src="/photos/信州大学_竹村萌花_もえか.webp"
+            src="/public_imgs/photos/信州大学_竹村萌花_もえか.webp"
             alt=""
             className="w-48 h-48 rounded-full m-10 object-cover"
           />
