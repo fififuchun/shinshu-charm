@@ -3,7 +3,7 @@ title: 信州Charmの設立理由を紹介します！
 date: 2024-11-09
 latestUpdate: 2024-11-09
 staff: ひろむら
-thumbnail: art_0.webp
+thumbnail: thumbnail/art_0.webp
 ---
 
 ## WEBサイト開設！

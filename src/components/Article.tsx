@@ -17,7 +17,7 @@ const Article = () => {
   const [ly, lm, ld] = article.latestUpdate.split("-").map(Number);
 
   return (
-    <div className="mt-5 mx-5 max-w-[800px]">
+    <div className="mt-5 sm:mx-10 mx-5 max-w-[800px]">
       <div className="h-fit flex items-center">
         <div className="text-center w-[10vw] min-w-16">
           <p className="text-sm">{year}</p>

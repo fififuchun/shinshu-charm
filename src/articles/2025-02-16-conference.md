@@ -3,7 +3,7 @@ title: 長野県魅力発見大会議を開催します
 date: 2025-02-16
 latestUpdate: 2025-02-16
 staff: かいぬま
-thumbnail: art_1.webp
+thumbnail: thumbnail/art_1.webp
 ---
 
 ## 長野県魅力発見大会議を開催します！
